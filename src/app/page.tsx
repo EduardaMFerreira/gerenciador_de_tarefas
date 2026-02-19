@@ -4,6 +4,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "../components/ui/card
 import { Separator } from "../components/ui/separator";
 import { Plus, List, Check, CircleMinus, SquarePen, Trash, ListTodo, Sigma } from 'lucide-react';
 import { Badge } from "../components/ui/badge";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../components/ui/alert-dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
 
 const Home = () => {
   return (
@@ -26,7 +28,20 @@ const Home = () => {
               <div className="w-1 h-full bg-green-300"></div>
               <p className="flex-1 px-2 text-sm">Estudar React.js</p>
               <div className="flex items-center gap-4">
-                <SquarePen size="16" className="cursor-pointer"/>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <SquarePen size="16" className="cursor-pointer"/>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Eduarda</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex gap-2">
+                      <Input placeholder="Editar tarefa"/>
+                      <Button className="cursor-pointer">Editar</Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <Trash size="16" className="cursor-pointer"/>
               </div>
             </div>
@@ -39,7 +54,22 @@ const Home = () => {
               <ListTodo size="18"/>
               <p className="text-xs">Tarefas Concluídas (3/3)</p>
             </div>
-            <Button variant="outline" className="xs h-7 cursor-pointer"><Trash/>Limpar Tarefas Concluídas</Button>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" className="xs h-7 cursor-pointer"><Trash/>Limpar Tarefas Concluídas</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Tem certeza que deseja excluir 2 itens?</AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogAction>Sim</AlertDialogAction>
+                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
           </div>
 
           <div className="h-2 w-full bg-gray-100 mt-4 rounded-md">
@@ -50,6 +80,8 @@ const Home = () => {
             <Sigma size="18"/>
             <p className="text-xs">3 tarefas no total</p>
           </div>
+
+
           
         </CardFooter>
       </Card>
